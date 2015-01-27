@@ -54,8 +54,8 @@ class QuizzesController < ApplicationController
   def update
     respond_to do |format|
       if @quiz.update(quiz_params)
-        format.html { redirect_to @quiz, notice: 'Quiz was successfully updated.' }
-        format.json { render :show, status: :ok, location: @quiz }
+        format.html { render plain: Quiz.maximum("score") }
+        # format.json { render :show, status: :ok, location: @quiz }
       else
         format.html { render :edit }
         format.json { render json: @quiz.errors, status: :unprocessable_entity }
@@ -69,7 +69,9 @@ class QuizzesController < ApplicationController
     # puts "*8" * 100
     # puts
     # puts
+
     
+
   end
 
   # DELETE /quizzes/1

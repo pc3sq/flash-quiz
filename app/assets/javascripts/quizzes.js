@@ -42,36 +42,28 @@ function endQuizScreen() {
 		return preVal + currentVal;
 	})
 
-	$("#topheading").text("End of Quiz #" + quiz.id);
-
-	$("#quiz").append("<div>Top Score: Dunno Yet ...</div>");
-	$("#quiz").append("<div>Your Score: " + totalScore + "</div>");
+	var highScore;
 
 	$.ajax({
       url: 'quizzes/' + quiz.id,
       type: 'POST',
       data: { _method:'PUT', quiz: {score: totalScore} },
       datatype: 'json'
-    // .done(function(response) {
-    //   quiz = response.quiz;
-    //   flashCards = response.flash_cards;
-    //   rawScorePerCard = 100 / flashCards.length;
+	})
+  .done(function(response) {
+    highScore = response;
 
-    //   $("#topheading").text("Now take Quiz #" + quiz.id);
-    //   $("#quiz").empty();
-    //   $("#flash-cards-menu").remove();
-
-    //   renderQuizScreen();
-      
-    // })
-    // .fail(function() {
-    //   alert( "error" );
-    // })
-    // .always(function() {
-    //   console.log( "complete" );
-    // });
-	});
-
+		$("#topheading").text("End of Quiz #" + quiz.id);
+		$("#quiz").append("<div>Top Score: " + highScore + "</div>");
+		$("#quiz").append("<div>Your Score: " + totalScore + "</div>");
+    
+  })
+  .fail(function() {
+    console.log( "error" );
+  })
+  .always(function() {
+    console.log( "complete" );
+  });
 
 }
 
