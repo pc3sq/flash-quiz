@@ -1,6 +1,11 @@
 var quiz;
 var flashCards;
 
+function renderQuizScreen() {
+	$("#quiz").append("<div>" + flashCards[0].question + "</div>");
+}
+
+
 $(document).ready(function(){
 	$("button#startquiz").on("click", function(){
 		event.preventDefault();
@@ -17,7 +22,8 @@ $(document).ready(function(){
       $("#quiz").empty();
       $("#flash-cards-menu").remove();
 
-      $("#quiz").append("<div>" + flashCards[0].question + "</div>");
+      renderQuizScreen();
+      
     })
     .fail(function() {
       alert( "error" );
