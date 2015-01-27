@@ -35,6 +35,20 @@ function scoring (timeTaken, attempts) {
 
 }
 
+
+function endQuizScreen() {
+	$("#quiz").empty();
+
+	var totalScore = scores.reduce(function(preVal, currentVal) {
+		return preVal + currentVal;
+	})
+
+	$("#topheading").text("End of Quiz #" + quiz.id);
+
+	$("#quiz").append("<div>Top Score: " + Dunno Yet ... + "</div>");
+	$("#quiz").append("<div>Your Score: " + totalScore + "</div>");
+}
+
 $(document).ready(function(){
 	$("button#startquiz").on("click", function(){
 		event.preventDefault();
