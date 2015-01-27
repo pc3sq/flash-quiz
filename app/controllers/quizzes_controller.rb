@@ -14,7 +14,17 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/new
   def new
-    @quiz = Quiz.new
+    @quiz = Quiz.create
+
+    @flash_cards = FlashCard.all
+
+    respond_to do |format|
+        format.json {
+           render json: { quiz: @quiz,
+                          flash_cards: @flash_cards }
+        }
+    end
+
   end
 
   # GET /quizzes/1/edit
@@ -35,6 +45,7 @@ class QuizzesController < ApplicationController
         format.json { render json: @quiz.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /quizzes/1
