@@ -1,4 +1,4 @@
-<h1>Welcome To Flash Quiz!</h1>
+<h1 id="topheading">Welcome To Flash Quiz!</h1>
 
 <!-- <table>
   <thead>
@@ -21,13 +21,16 @@
 </table> -->
 
 <br>
-
-<button id="startquiz">Start A Quiz?</button>
+<section id="quiz">
+  <button id="startquiz">Start A Quiz?</button>
+</section>
 
 <br>
 <br>
 
-<h3>Flash Cards</h3>
-<%= link_to 'See Flash Cards', flash_cards_path %>
-<br>
-<%= link_to 'Add Flash Cards', new_flash_card_path %>
+<section id="flash-cards-menu">
+  <h3>Flash Cards</h3>
+  <%= link_to 'See Flash Cards', flash_cards_path %>
+  <br>
+  <%= link_to 'Add Flash Cards', new_flash_card_path %>
+</section>

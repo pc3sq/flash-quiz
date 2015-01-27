@@ -1,27 +1,30 @@
+var quiz;
+var flashCards;
+
 $(document).ready(function(){
 	$("button#startquiz").on("click", function(){
 		event.preventDefault();
-		alert("clicked!");
 
 		$.ajax({
-      url: 'http://www.google.com', // which route??? ex. quiz/new or quiz/create
-      type: 'POST', // type of http verb?
-      data: {}, // data sending, if any?
-      // success: function(response){
-      //   //what to do with the response?
-      // },
-      //  error: function(request, status, err){
-      //    // some error handling
-      //  }
+      url: 'quizzes/new',
+      type: 'GET',
     })
-    .done(function() {
-      alert( "success" );
+    .done(function(response) {
+      quiz = response.quiz;
+      flashCards = response.flash_cards;
+
+      $("#topheading").text("Now take Quiz #" + quiz.id);
+      $("#quiz").empty();
+      $("#flash-cards-menu").remove();
+
+      $("#quiz").append("<div>" + flashCards[0].question + "</div>");
+
     })
     .fail(function() {
       alert( "error" );
     })
     .always(function() {
-      alert( "complete" );
+      console.log( "complete" );
     });
 
 	});
