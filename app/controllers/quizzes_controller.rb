@@ -29,6 +29,7 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1/edit
   def edit
+
   end
 
   # POST /quizzes
@@ -60,6 +61,15 @@ class QuizzesController < ApplicationController
         format.json { render json: @quiz.errors, status: :unprocessable_entity }
       end
     end
+
+    # puts
+    # puts
+    # puts "*8" * 100
+    # p params[:quiz]
+    # puts "*8" * 100
+    # puts
+    # puts
+    
   end
 
   # DELETE /quizzes/1
