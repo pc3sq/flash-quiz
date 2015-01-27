@@ -35,7 +35,6 @@ function scoring (timeTaken, attempts) {
 
 }
 
-
 function endQuizScreen() {
 	$("#quiz").empty();
 
@@ -45,7 +44,7 @@ function endQuizScreen() {
 
 	$("#topheading").text("End of Quiz #" + quiz.id);
 
-	$("#quiz").append("<div>Top Score: " + Dunno Yet ... + "</div>");
+	$("#quiz").append("<div>Top Score: Dunno Yet ...</div>");
 	$("#quiz").append("<div>Your Score: " + totalScore + "</div>");
 }
 
@@ -80,36 +79,31 @@ $(document).ready(function(){
 	$(document).on("click", "button#answer", function(){
 		event.preventDefault();
 
-		if (flashCards.length > 1) {
-			attempt = $("#answer-text").val();
+		attempt = $("#answer-text").val();
 
-			$("#answer-text").val("");
+		$("#answer-text").val("");
 
-			if (attempt == flashCards[0].answer) {
-
-				var endTime = Date.now();
-
-				var totalTimeInSeconds = (endTime - startTime)/1000;
-
-				scores.push(scoring(totalTimeInSeconds));
-
-				console.log(scores);
-
-				flashCards.shift();
-				renderQuizScreen();
-			} else if (numOfAttempts == 2) {
-				flashCards.shift();
-				renderQuizScreen();
-			} else {
-				numOfAttempts ++;
-			}
-
-		console.log(flashCards.length);
+		if (attempt == flashCards[0].answer) {
+			var endTime = Date.now();
+			var totalTimeInSeconds = (endTime - startTime)/1000;
+			scores.push(scoring(totalTimeInSeconds));
+			console.log(scores);
+			flashCards.shift();
+			
+		} else if (numOfAttempts == 2) {
+			flashCards.shift();
 
 		} else {
-			// render endQuiz
+			numOfAttempts ++;
 		}
 
+		console.log(flashCards.length);
+		
+		if (flashCards.length > 0) {
+			renderQuizScreen();
+		} else {
+			endQuizScreen();
+		}
 
 	});
 
