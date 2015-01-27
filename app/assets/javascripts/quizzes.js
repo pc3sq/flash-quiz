@@ -46,6 +46,33 @@ function endQuizScreen() {
 
 	$("#quiz").append("<div>Top Score: Dunno Yet ...</div>");
 	$("#quiz").append("<div>Your Score: " + totalScore + "</div>");
+
+	$.ajax({
+      url: 'quizzes/' + quiz.id,
+      type: 'POST',
+      data: { _method:'PUT', quiz: {score: totalScore} },
+      datatype: 'json'
+    // .done(function(response) {
+    //   quiz = response.quiz;
+    //   flashCards = response.flash_cards;
+    //   rawScorePerCard = 100 / flashCards.length;
+
+    //   $("#topheading").text("Now take Quiz #" + quiz.id);
+    //   $("#quiz").empty();
+    //   $("#flash-cards-menu").remove();
+
+    //   renderQuizScreen();
+      
+    // })
+    // .fail(function() {
+    //   alert( "error" );
+    // })
+    // .always(function() {
+    //   console.log( "complete" );
+    // });
+	});
+
+
 }
 
 $(document).ready(function(){
@@ -91,6 +118,7 @@ $(document).ready(function(){
 			flashCards.shift();
 			
 		} else if (numOfAttempts == 2) {
+			scores.push(0);
 			flashCards.shift();
 
 		} else {
