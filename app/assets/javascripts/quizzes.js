@@ -1,6 +1,7 @@
 var quiz;
 var flashCards;
-var numOfAttempts;
+var numOfAttempts = 0;
+var scores = []
 
 function renderQuizScreen() {
 	$("#quiz").empty();
@@ -62,12 +63,16 @@ $(document).ready(function(){
 
 		attempt = $("#answer-text").val();
 
-		$("#answer-text").val() = "";
-
+		$("#answer-text").val("");
 
 		if (attempt == flashCards[0].answer) {
 			flashCards.shift();
-
+			renderQuizScreen();
+		} else if (numOfAttempts == 2) {
+			flashCards.shift();
+			renderQuizScreen();
+		} else {
+			numOfAttempts ++;
 		}
 
 	});
