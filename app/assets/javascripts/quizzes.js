@@ -18,7 +18,6 @@ $(document).ready(function(){
       $("#flash-cards-menu").remove();
 
       $("#quiz").append("<div>" + flashCards[0].question + "</div>");
-
     })
     .fail(function() {
       alert( "error" );
@@ -26,6 +25,10 @@ $(document).ready(function(){
     .always(function() {
       console.log( "complete" );
     });
-
 	});
+
+
+
+
+
 });
